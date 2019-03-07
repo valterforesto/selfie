@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>SELFIE</name>
+    <description>
+        BLE mobile application for SELFIE Automation-IO devices
+    </description>
+    <author email="valter.foresto@gmail.com" href="http://www.iblio.net">
+        Apache Cordova / PhoneGAP Developer for Android, iOS and the Web
+    </author>
+    <content src="index.html" />
+    <icon src="iot.png" />
+    <platform name="ios" />
+    <platform name="android" />
+    <engine name="android" spec="^7.0.0" />
+    <plugin name="cordova-plugin-ble-central" spec="^1.2.2" />
+</widget>

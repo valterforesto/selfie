@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+<head>
+    <!--
+    Customize this policy to fit your own app's needs. For more guidance, see:
+        https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+    Some notes:
+        * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+        * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+        * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+            * Enable inline JS: add 'unsafe-inline' to default-src
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/w4.css">
+    <link rel="stylesheet" type="text/css" href="css/w3-theme-w3schools.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <title>SELFIE Automation-IO</title>
+</head>
+<body>
+    <div class="app" ng-app="">
+ 
+        <div id="home">
+            <div class="w3-large">
+                <button class="w3-btn w3-left-align w3-theme-d5" style="width:100%">SELFIE Automation-IO</button>
+            </div>
+            <div class="w3-panel w3-center">
+                <br /><br /><br /><img src="img/selfie.png" /><br /><br /><br />
+                <p>
+                    <button id="to_info" class="w3-button w3-block w3-theme-l5 w3-round w3-border">Informations</button>
+                </p>
+                <p>
+                    <button id="to_scan" class="w3-button w3-block w3-theme-l5 w3-round w3-border">Scan for BLE Devices</button>
+                </p>
+            </div>
+        </div>
+
+        <div id="scan">
+            <div class="w3-bar w3-large">
+                <button id="back_scan" class="w3-bar-item w3-btn w3-theme-d5" style="width:15%"><b><</b></button>
+                <button class="w3-bar-item w3-btn w3-left-align w3-theme-d5" style="width:85%">BLE Devices</button>
+            </div>
+            <div class="w3-panel w3-center w3-theme-l3">
+                <p id="scan_msg"> ..... <p>
+            </div>
+            <div class="w3-panel">
+                <ul id="devices_list" class="w3-ul w3-center w3-block w3-theme-l5 w3-round w3-border"></ul>
+            </div>
+        </div> 
+
+        <div id="connect">
+            <div class="w3-bar w3-large">
+                <button id="back_connect" class="w3-bar-item w3-btn w3-theme-d5" style="width:15%"><b><</b></button>
+                <button class="w3-bar-item w3-btn w3-left-align w3-theme-d5" style="width:85%">Connected BLE Device</button>
+            </div>
+            <div class="w3-panel w3-center w3-theme-l3">
+                <p id="connect_msg"> ..... <p>
+            </div>
+            <p>
+            <form class="w3-container">
+              <p>
+              <label><b>State</b></label><br />
+              <input id="checkbox_on" class="w3-radio" type="radio" name="state" value="On" disabled>
+              <label>On</label><br />
+              <input id="checkbox_off" class="w3-radio" type="radio" name="state" value="Off" disabled>
+              <label>Off</label><br />
+              <button id="connect_change" class="w3-btn w3-theme-l5 w3-center w3-block w3-round w3-border">Change</button>
+              </p>
+
+              <p>
+              <label><b>Description</b></label>
+              <input class="w3-input w3-center w3-block w3-round w3-border" type="text" id="description_str">
+              <button id="connect_set" class="w3-btn w3-theme-l5 w3-center w3-block w3-round w3-border">Set</button>
+              </p>
+            </form>  
+            </p>
+        </div>
+
+        <div id="info">
+            <div class="w3-bar w3-large">
+                <button id="back_info" class="w3-bar-item w3-btn w3-theme-d5" style="width:15%"><b><</b></button>
+                <button class="w3-bar-item w3-btn w3-left-align w3-theme-d5" style="width:85%">Informations</button>
+            </div>
+            <br />
+            <div class="w3-panel">
+                <textarea id="info_msg" disabled></textarea>
+            </div>
+        </div>
+
+        <div id="alert_modal" class="w3-modal w3-animate-opacity">
+            <div class="w3-modal-content">
+                <div class="w3-container">
+                    <h4 id="alert_title" class="w3-padding"></h4>
+                    <p id="alert_message"></p>
+                    <br />
+                    <span id="alert_modal_ok" class="w3-button w3-display-bottomright">OK</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="debug" class="w3-container w3-light-grey">
+            <br />
+            <center>
+                <textarea id="debug_msg" rows="8" cols="40" disabled></textarea>
+            </center>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>
