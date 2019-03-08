@@ -11,6 +11,5 @@
     <icon src="iot.png" />
     <platform name="ios" />
     <platform name="android" />
-    <engine name="android" spec="^7.0.0" />
     <plugin name="cordova-plugin-ble-central" spec="^1.2.2" />
 </widget>
